@@ -26,11 +26,13 @@ const ItemCard = (props) => {
         };
     };
 
+    const toggler = event => {
+        event.preventDefault();
+        props.toggleItem(props.indivCard.id);
+    };
+
     return (
-        <div style={props.indivCard.completed ? styledItem().div2 : styledItem().div1} onClick={(event) => {
-            event.preventDefault();
-            props.toggleItem(props.indivCard.id);
-        }}>
+        <div style={props.indivCard.completed ? styledItem().div2 : styledItem().div1} onClick={toggler}>
             <h2 style={styledItem().h2}>{props.indivCard.item}</h2>
         </div>
     );

@@ -14,19 +14,6 @@ function App() {
     modifyList(evt.target.value);
   };
 
-  const updateList = evt => {
-    evt.preventDefault();
-
-    const newListing = {
-      item: data,
-      completed: false,
-      id: Date.now()
-    };
-
-    dispatched({type: 'ADDITEM', payload: newListing});
-    modifyList('');
-  };
-
   const checkComplete = taskID => {
     dispatched({type: 'TOGGLE_COMPLETE', payload: taskID});
   };
@@ -35,7 +22,7 @@ function App() {
     <div className="App">
       <h1>The Gnomes List</h1>
       <TodoList state={currentState} toggleItem={checkComplete} />
-      <TodoForm listItem={data} updateInput={updateInput} onSubmit={updateList} />
+      <TodoForm fetched={dispatched} addToList={modifyList} listItem={data} updateInput={updateInput} />
     </div>
   );
 }

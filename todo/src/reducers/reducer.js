@@ -9,9 +9,13 @@ export const redeux = (state, action) => {
         case "ADDITEM":
             return [...state, action.payload];
         case "TOGGLE_COMPLETE":
-            return state.map(eachItem => 
-                eachItem.id === action.payload ? {...eachItem, completed: !eachItem.completed}:eachItem
-            );
+            return state.map(eachItem => {
+                return eachItem.id === action.payload ? {...eachItem, completed: !eachItem.completed} : eachItem
+            });
+        case "CLEARCOMPS":
+            return state.filter(isComplete => {
+                return isComplete.completed === false;
+            });
         default:
             return state;
     }
